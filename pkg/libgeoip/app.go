@@ -2,10 +2,12 @@ package libgeoip
 
 import (
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
-	"github.com/monzo/typhon"
 	"log"
 	"strings"
+
+	"github.com/davecgh/go-spew/spew"
+	"github.com/monzo/typhon"
+	"github.com/oschwald/geoip2-golang"
 )
 
 var (
@@ -13,15 +15,21 @@ var (
 )
 
 type App struct {
-	Addr    string   `json:"addr"`
-	Config  Config   `json:"config"`
+	Addr    string            `json:"addr"`
+	Config  Config            `json:"config"`
 	Modules map[string]Module `json:"modules"`
 	Router  *typhon.Router
 	Debug   bool
 	Verbose bool
+	DB      *geoip2.Reader
 }
 
 func NewApp(addr string, config Config, verbose, debug bool, modules ...Module) App {
+
+	db, err := geoip2.Open(config.GeoIpDBPath)
+	if err != nil {
+		log.Fatal(fmt.Sprintf("%s. You must set geo_ip_db_path in the config file!\n", err.Error()))
+	}
 
 	m := map[string]Module{}
 	for _, module := range modules {
@@ -34,6 +42,7 @@ func NewApp(addr string, config Config, verbose, debug bool, modules ...Module) 
 		Modules: m,
 		Debug:   debug,
 		Verbose: verbose,
+		DB:      db,
 	}
 
 	router := &typhon.Router{}
