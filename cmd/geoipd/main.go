@@ -3,15 +3,16 @@ package main
 import (
 	"context"
 	"flag"
+	"geoipd/pkg/libgeoip"
+	"geoipd/pkg/libgeoip/filters"
+	"geoipd/pkg/libgeoip/modules/debug"
+	"geoipd/pkg/libgeoip/modules/triangulate"
 	"github.com/joho/godotenv"
 	"github.com/logrusorgru/aurora"
 	"github.com/monzo/typhon"
 	"log"
 	"os"
 	"os/signal"
-	"geoipd/pkg/libgeoip"
-	"geoipd/pkg/libgeoip/filters"
-	"geoipd/pkg/libgeoip/modules/debug"
 	"strconv"
 	"syscall"
 	"time"
@@ -53,7 +54,8 @@ func main() {
 		log.Fatalf("could not parse the configuration because of: %s", err.Error())
 	}
 	addr := *host + ":" + strconv.Itoa(*port)
-	app := libgeoip.NewApp(addr, config, *verbose, *debugFlag, debug.Module)
+	app := libgeoip.NewApp(addr, config, *verbose, *debugFlag, debug.Module, triangulate.Module)
+	defer app.DB.Close()
 
 	svc := app.Router.Serve().
 		Filter(typhon.ErrorFilter).
