@@ -41,6 +41,8 @@ type Config struct {
 	OAuthIssuer            string   `json:"oauth_issuer"`
 	OAuthAudience          string   `json:"oauth_audience"`
 	//TODO: add more fields here if you want to make the app more configurable
+
+	GeoIpDBPath string `json:"geo_ip_db_path"`
 }
 
 type Service func(app App) typhon.Service
