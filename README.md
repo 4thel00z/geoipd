@@ -1,6 +1,7 @@
 # ```geoipd```
 
 ![geoipd-tests](https://github.com/4thel00z/geoipd/workflows/Test/badge.svg)
+![geoipd-logo](https://github.com/4thel00z/geoipd/raw/assets/logo.png)
 
 ## What this project is about
 
