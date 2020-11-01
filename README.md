@@ -4,21 +4,18 @@
 
 ## What this project is about
 
-This is [my](https://github.com/4thel00z) go http service template.
-It sports features like:
+This is the geoipd tool.
+It's intention is to provide a simple HTTP server which uses the MaxMind GeoLite2 Database to:
 
-- validation support (see debug module for example)
-- jwt validation support
-- module support (see debug module for example)
+- translate between IPs to geo locations
+- render IPs on a map (not done yet)
 
+All the usages of this software have to comply with [maxmind's end user license agreement.](https://www.maxmind.com/en/end-user-license-agreement) 
+I distance myself from usages that do not comply with the aforementioned end user license agreement.
 
 ## How do I install it ?
 
-To create a new project simply invoke this script, (make sure to use your own project name instead of `<project_name>` lol):
-
-```
-curl  --proto '=https' --tlsv1.2 -L -sSf https://shortly.fun/boilerplate | bash -s <project_name>
-```
+Pick one of the release tarballs.
 
 ## How do I run it ?
 
