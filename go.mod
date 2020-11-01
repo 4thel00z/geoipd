@@ -14,6 +14,7 @@ require (
 	github.com/monzo/slog v0.0.0-20200622142821-ebfbdb7eb55b // indirect
 	github.com/monzo/terrors v0.0.0-20191030112059-325b9ec5dcdf // indirect
 	github.com/monzo/typhon v0.0.0-20200505200851-d565f398c1c5
+	github.com/oschwald/geoip2-golang v1.4.0
 	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9 // indirect
 	golang.org/x/text v0.3.2 // indirect
