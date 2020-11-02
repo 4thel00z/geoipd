@@ -21,12 +21,19 @@ func (t Triangulate) Namespace() string {
 func (t Triangulate) Routes() map[string]libgeoip.Route {
 	// Add route definitions here
 	return map[string]libgeoip.Route{
-		"location": {
-			Path:        "location",
+		"locate": {
+			Path:        "locate",
 			Method:      "POST",
-			CurlExample: "http POST http://<addr>/<version>/<namespace>/<path> < examples/ips.txt",
-			Service:     PostTriangulateHandler,
-			Validator:   libgeoip.GenerateRequestValidator(PostTriangulateRequest{}),
+			CurlExample: "http POST http://<addr>/<version>/<namespace>/<path> < examples/ips.json",
+			Service:     PostLocateHandler,
+			Validator:   libgeoip.GenerateRequestValidator(PostLocateRequest{}),
+		},
+		"render": {
+			Path:        "render",
+			Method:      "POST",
+			CurlExample: "http POST http://<addr>/<version>/<namespace>/<path> < examples/render.json > out.svg",
+			Service:     PostRenderHandler,
+			Validator:   libgeoip.GenerateRequestValidator(PostRenderRequest{}),
 		},
 	}
 }

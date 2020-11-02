@@ -26,11 +26,19 @@ type Location struct {
 	AccuracyRadius uint16  `json:"accuracy_radius"`
 }
 
-type PostTriangulateRequest struct {
+type PostLocateRequest struct {
 	IPs []IP `json:"ips"`
 }
 
-type PostTriangulateResponse struct {
+type PostRenderRequest struct {
+	IP      IP      `json:"ip"`
+	Padding float64 `json:"padding"`
+	//TODO: add max,min validation annotation
+	Width  float64 `json:"width"`
+	Height float64 `json:"height"`
+}
+
+type PostLocateResponse struct {
 	IPs   map[string]Location `json:"ips"`
 	Error *string             `json:"error,omitempty"`
 }
