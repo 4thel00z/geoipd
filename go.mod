@@ -6,6 +6,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/deckarep/golang-set v1.7.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/fapian/geojson2svg v1.0.0
 	github.com/fortytw2/leaktest v1.3.0 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/joho/godotenv v1.3.0
@@ -15,6 +16,9 @@ require (
 	github.com/monzo/terrors v0.0.0-20191030112059-325b9ec5dcdf // indirect
 	github.com/monzo/typhon v0.0.0-20200505200851-d565f398c1c5
 	github.com/oschwald/geoip2-golang v1.4.0
+	github.com/paulmach/go.geojson v1.4.0 // indirect
+	github.com/paulmach/orb v0.1.6
+	github.com/paulmach/osm v0.1.1
 	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9 // indirect
 	golang.org/x/text v0.3.2 // indirect
