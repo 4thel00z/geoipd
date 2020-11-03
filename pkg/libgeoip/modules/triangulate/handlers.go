@@ -2,6 +2,7 @@ package triangulate
 
 import (
 	"encoding/json"
+	"fmt"
 	"geoipd/pkg/libgeoip"
 	"geoipd/pkg/libgeoip/filters"
 	"github.com/fapian/geojson2svg/pkg/geojson2svg"
@@ -13,6 +14,7 @@ import (
 	"github.com/paulmach/osm/osmgeojson"
 	"net"
 	"net/http"
+	"os"
 )
 
 func PostLocateHandler(app libgeoip.App) typhon.Service {
@@ -49,14 +51,27 @@ func PostRenderHandler(app libgeoip.App) typhon.Service {
 			response.StatusCode = http.StatusInternalServerError
 			return response
 		}
-		geo, err := osmgeojson.Convert(o, osmgeojson.IncludeInvalidPolygons(false))
+
+		geo, err := osmgeojson.Convert(o,
+			osmgeojson.IncludeInvalidPolygons(false),
+			osmgeojson.NoMeta(true),
+		)
+
 		if err != nil {
 			response := req.Response(err.Error())
 			response.StatusCode = http.StatusInternalServerError
 			return response
 		}
 
+		for _, feature := range geo.Features {
+			err := Styles.AddToFeature(feature)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "%s", err)
+				continue
+			}
+		}
 		gj, err := json.Marshal(geo)
+
 		if err != nil {
 			response := req.Response(err.Error())
 			response.StatusCode = http.StatusInternalServerError
@@ -65,6 +80,8 @@ func PostRenderHandler(app libgeoip.App) typhon.Service {
 
 		svg := geojson2svg.New()
 		err = svg.AddFeatureCollection(string(gj))
+		fmt.Println(string(gj))
+
 		if err != nil {
 			response := req.Response(err.Error())
 			response.StatusCode = http.StatusInternalServerError
@@ -74,6 +91,14 @@ func PostRenderHandler(app libgeoip.App) typhon.Service {
 		point := geojson.NewFeature(orb.Point{
 			lat, lon,
 		})
+
+		err = Styles.AddToFeature(point)
+
+		if err != nil {
+			response := req.Response(err.Error())
+			response.StatusCode = http.StatusInternalServerError
+			return response
+		}
 
 		gj, err = json.Marshal(point)
 		if err != nil {
@@ -89,13 +114,14 @@ func PostRenderHandler(app libgeoip.App) typhon.Service {
 			return response
 		}
 		response := req.Response(nil)
-		_, err = response.Write([]byte(svg.Draw(tReq.Width, tReq.Height)))
+
+		_, err = response.Write([]byte(svg.Draw(tReq.Width, tReq.Height, geojson2svg.UseProperties(Styles.Keys()))))
 		if err != nil {
 			response := req.Response(err.Error())
 			response.StatusCode = http.StatusInternalServerError
 			return response
 		}
-		response.Header.Add("Content-Type","image/svg+xml")
+		response.Header.Add("Content-Type", "image/svg+xml")
 		response.StatusCode = 200
 		return response
 	}
