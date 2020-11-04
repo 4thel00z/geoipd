@@ -26,7 +26,12 @@ This is the example rendering that was rendered by locating the ip adress `1.1.1
 
 ## How do I install it ?
 
-Pick one of the release tarballs.
+Pick one of the [release tarballs](https://github.com/4thel00z/geoipd/releases/latest).
+
+If you have linux machine with amd64, you can use this oneliner instead:
+```
+curl -s https://api.github.com/repos/4thel00z/geoipd/releases/latest |grep "browser_download_url"| cut -d '"' -f 4| grep linux| grep amd64| wget -qi -
+```
 
 ## How do I run it ?
 
