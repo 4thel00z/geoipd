@@ -18,6 +18,12 @@ It's intention is to provide a simple HTTP server which uses the MaxMind GeoLite
 All the usages of this software have to comply with [maxmind's end user license agreement.](https://www.maxmind.com/en/end-user-license-agreement) 
 I distance myself from usages that do not comply with the aforementioned end user license agreement.
 
+## Example rendering
+
+This is the example rendering that was rendered by locating the ip adress `1.1.1.1`:
+
+![geoipd-rendering](https://github.com/4thel00z/geoipd/raw/assets/out.png)
+
 ## How do I install it ?
 
 Pick one of the release tarballs.
