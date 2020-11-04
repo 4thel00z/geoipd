@@ -13,7 +13,7 @@ It's intention is to provide a simple HTTP server which uses the MaxMind GeoLite
 - translate between IPs to geo locations
 - render IPs on a map
 
-[![asciicast](https://asciinema.org/a/TaBCmf30otbvglrp8DQ8FkuB6.svg)](https://asciinema.org/a/TaBCmf30otbvglrp8DQ8FkuB6)
+[![asciicast](https://asciinema.org/a/R1C7LZcAjOluuhI57CTngzbPM.svg)](https://asciinema.org/a/R1C7LZcAjOluuhI57CTngzbPM)
 
 All the usages of this software have to comply with [maxmind's end user license agreement.](https://www.maxmind.com/en/end-user-license-agreement) 
 I distance myself from usages that do not comply with the aforementioned end user license agreement.
