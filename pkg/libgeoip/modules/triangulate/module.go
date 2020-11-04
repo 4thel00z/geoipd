@@ -31,7 +31,7 @@ func (t Triangulate) Routes() map[string]libgeoip.Route {
 		"render": {
 			Path:        "render",
 			Method:      "POST",
-			CurlExample: "http POST http://<addr>/<version>/<namespace>/<path> < examples/render.json > out.svg",
+			CurlExample: "http POST http://<addr>/<version>/<namespace>/<path> < examples/render.json > out.png",
 			Service:     PostRenderHandler,
 			Validator:   libgeoip.GenerateRequestValidator(PostRenderRequest{}),
 		},
