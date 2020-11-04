@@ -32,10 +32,11 @@ type PostLocateRequest struct {
 
 type PostRenderRequest struct {
 	IP      IP      `json:"ip"`
-	Padding float64 `json:"padding"`
 	//TODO: add max,min validation annotation
-	Width  float64 `json:"width"`
-	Height float64 `json:"height"`
+	Width  int     `json:"width"`
+	Height int     `json:"height"`
+	Size   float64 `json:"size"`
+	Color  string  `json:"color"`
 }
 
 type PostLocateResponse struct {
