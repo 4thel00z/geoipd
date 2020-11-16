@@ -2,6 +2,7 @@
 
 ![geoipd-tests](https://github.com/4thel00z/geoipd/workflows/Test/badge.svg)
 ![geoipd-logo](https://github.com/4thel00z/geoipd/raw/assets/logo.png)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/4thel00z/geoipd/latest/total?style=for-the-badge)
 
 ## What this project is about
 
