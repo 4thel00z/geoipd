@@ -6,8 +6,6 @@
 
 ## What this project is about
 
-
-
 This is the geoipd tool.
 It's intention is to provide a simple HTTP server which uses the MaxMind GeoLite2 Database to:
 
@@ -34,6 +32,16 @@ If you have linux machine with amd64, you can use this oneliner instead:
 curl -s https://api.github.com/repos/4thel00z/geoipd/releases/latest |grep "browser_download_url"| cut -d '"' -f 4| grep linux| grep amd64| wget -qi -
 ```
 
+## How to download the database
+
+You need to enter a your MaxMind License key which you can obtain from here: `https://www.maxmind.com/en/accounts/<user-id>/license-key`
+In an .env file like so:
+```
+MAX_MIND_KEY=<enter you key>
+```
+then you can update/download the database *from inside this repository*.
+Run `make run` afterwards to have a new working geoipd instance under `build/geoipd`.
+
 ## How do I run it ?
 
 After creating a new project like above you can simply run:
@@ -50,6 +58,7 @@ just run
 
 if you have [just](https://github.com/casey/just) installed.
 Running `make help` will show you the rest of the targets.
+
 
 ## License
 
